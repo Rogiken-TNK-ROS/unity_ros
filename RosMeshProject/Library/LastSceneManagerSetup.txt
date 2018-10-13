@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Mesh_test.unity
+  isLoaded: 1
+  isActive: 1
