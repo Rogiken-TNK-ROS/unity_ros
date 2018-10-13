@@ -1,0 +1,11 @@
+﻿参考サイト
+
+OculusGoをROSと通信させる
+https://qiita.com/Spritaro/items/5eb99b2fcdc26a3816ce
+
+ROSで32bit整数型の配列をメッセージとして使用する
+https://qiita.com/kazuyamashi/items/b64cc546da816c6f20d9
+
+ros_sharp
+https://github.com/siemens/ros-sharp/wiki/Dev_NewMessageTypes
+
