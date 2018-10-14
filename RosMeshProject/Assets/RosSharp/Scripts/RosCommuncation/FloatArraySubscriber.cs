@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,12 +8,12 @@ namespace RosSharp.RosBridgeClient
 {
 	public class FloatArraySubscriber : Subscriber<Messages.Standard.Float32array>
 	{
-		private Mesh mesh;
+		//private Mesh mesh;
 		[SerializeField]
 		public Material material;
 		public PhysicMaterial physicMaterial;
 
-		public float[] messageData;
+		//public float[] messageData;
 		private bool isMessageReceived = false;
 		private int size;
         private float[] floatArray;
@@ -26,7 +26,7 @@ namespace RosSharp.RosBridgeClient
 		private void Update()
 		{
 			if (isMessageReceived) {
-                Destroy(mesh);
+                //Destroy(mesh);
                 CreateMesh();
                 isMessageReceived = false;
 			
@@ -37,20 +37,24 @@ namespace RosSharp.RosBridgeClient
 		protected override void ReceiveMessage(Messages.Standard.Float32array message)
 		{
 			int i = 0;
-            /*
-			foreach (float temp in message.data) {
+            
+			/*foreach (float temp in message.data) {
 				messageData[i] = temp;
 				i++;
 			}
-			size = i;*/
-            int size = message.data.GetLength(0);
-            Debug.Log(size);
+			i = 0;
+			*/
+			//size = i;
+            size = message.data.GetLength(0);
+            //Debug.Log(size);
             floatArray = new float[size];
+
             foreach (float temp in message.data)
             {
                 floatArray[i] = temp;
-                //i++;
+                i++;
             }
+			//Debug.Log(floatArray[0]);
             isMessageReceived = true;
 		}
 
