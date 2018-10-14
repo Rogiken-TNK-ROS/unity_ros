@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RosMeshProject", "RosMeshProject.csproj", "{5A6C29A3-132D-8957-7BC0-DEAB2B56645D}"
 EndProject
 Global

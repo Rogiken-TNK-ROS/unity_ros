@@ -16,8 +16,9 @@ namespace RosSharp.RosBridgeClient
 		public float[] messageData;
 		private bool isMessageReceived = false;
 		private int size;
-		
-		protected override void Start()
+        private float[] floatArray;
+
+        protected override void Start()
 		{
 			base.Start();
 			
@@ -25,7 +26,7 @@ namespace RosSharp.RosBridgeClient
 		private void Update()
 		{
 			if (isMessageReceived) {
-
+                Destroy(mesh);
                 CreateMesh();
                 isMessageReceived = false;
 			
@@ -36,12 +37,21 @@ namespace RosSharp.RosBridgeClient
 		protected override void ReceiveMessage(Messages.Standard.Float32array message)
 		{
 			int i = 0;
+            /*
 			foreach (float temp in message.data) {
 				messageData[i] = temp;
 				i++;
 			}
-			size = i;
-			isMessageReceived = true;
+			size = i;*/
+            int size = message.data.GetLength(0);
+            Debug.Log(size);
+            floatArray = new float[size];
+            foreach (float temp in message.data)
+            {
+                floatArray[i] = temp;
+                //i++;
+            }
+            isMessageReceived = true;
 		}
 
 		void CreateMesh()
@@ -56,15 +66,16 @@ namespace RosSharp.RosBridgeClient
 		 for(int n = 0; n < size/3; n++)
 		{
                 // 頂点座標の指定
-                vertices[n] = new Vector3(messageData[3*n],messageData[3*n+1],messageData[3*n+2]);
+                //vertices[n] = new Vector3(messageData[3*n],messageData[3*n+1],messageData[3*n+2]);
+                vertices[n] = new Vector3(floatArray[3 * n], floatArray[3 * n + 1], floatArray[3 * n + 2]);
 
-                // 三角形ごとの頂点インデックスを指定(katamen)
+                // 三角形ごとの頂点インデックスを指定(片面)
                 triangles[n] = n;
 			
 		}
 
             // UVの指定 (頂点数と同じ数を指定すること).
-            //ittannnashide
+            //いったんなし
 
             Mesh mesh = new Mesh();
 			mesh.vertices = vertices;
