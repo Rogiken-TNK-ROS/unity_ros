@@ -140,6 +140,7 @@
     <Compile Include="Assets\RosSharp\Scripts\UrdfComponents\RigidbodyUrdfDataManager.cs" />
     <Compile Include="Assets\RosSharp\Scripts\UrdfComponents\UrdfPatcher.cs" />
     <Compile Include="Assets\script\KeyMove.cs" />
+    <Compile Include="Assets\script\PerlinNoiseMesh.cs" />
     <Compile Include="Assets\script\SceneViewCamera.cs" />
     <Compile Include="Assets\script\Shoot.cs" />
   </ItemGroup>

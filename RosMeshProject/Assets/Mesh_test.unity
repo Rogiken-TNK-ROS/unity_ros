@@ -239,6 +239,37 @@ MonoBehaviour:
   TimeStep: 0
   material: {fileID: 2100000, guid: 1f96edf81d273d240836b16967566cf0, type: 2}
   physicMaterial: {fileID: 13400000, guid: dc16632ad37a7b74fbf50310012500dd, type: 2}
+  meshColorGradient:
+    serializedVersion: 2
+    key0: {r: 0.021572253, g: 0.22603726, b: 0.97794116, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  minHeight: 0
+  maxHeight: 255
 --- !u!114 &633795161
 MonoBehaviour:
   m_ObjectHideFlags: 0

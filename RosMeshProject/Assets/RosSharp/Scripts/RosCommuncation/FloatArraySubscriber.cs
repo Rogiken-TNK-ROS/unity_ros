@@ -13,8 +13,14 @@ namespace RosSharp.RosBridgeClient
 		public Material material;
 		public PhysicMaterial physicMaterial;
 
-		//public float[] messageData;
-		private bool isMessageReceived = false;
+        //color test
+        public Gradient meshColorGradient;
+        public float minHeight;
+        public float maxHeight;
+        //color test
+
+        //public float[] messageData;
+        private bool isMessageReceived = false;
 		private int size;
         private float[] floatArray;
 
@@ -101,5 +107,21 @@ namespace RosSharp.RosBridgeClient
 			meshCollider.sharedMesh = mesh;
 			meshCollider.sharedMaterial = physicMaterial;
 		}
-	}
+
+        Texture2D CreateTexture(Vector3[] vertices)
+        {
+            Color[] colorMap = new Color[vertices.Length];
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                float percent = Mathf.InverseLerp(minHeight, maxHeight, vertices[i].y);
+                colorMap[i] = meshColorGradient.Evaluate(percent);
+            }
+            Texture2D texture = new Texture2D(size, size);
+
+            texture.SetPixels(colorMap);
+            texture.Apply();
+
+            return texture;
+        }
+    }
 }
