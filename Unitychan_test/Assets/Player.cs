@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         CharacterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         // いずれかの方向に移動している場合
         if (velocity.magnitude > 0)
         {
-
+            animator.SetBool("walkFlag", true);
             // プレイヤーの回転(transform.rotation)の更新
             // 無回転状態のプレイヤーのZ+方向(後頭部)を、
             // カメラの水平回転(refCamera.hRotation)で回した移動の反対方向(-velocity)に回す回転に段々近づけます
@@ -48,6 +49,10 @@ public class Player : MonoBehaviour
             // プレイヤーの位置(transform.position)の更新
             // カメラの水平回転(refCamera.hRotation)で回した移動方向(velocity)を足し込みます
             transform.position += refCamera.hRotation * velocity;
+        }
+        else
+        {
+            animator.SetBool("walkFlag", false);
         }
     }
 }

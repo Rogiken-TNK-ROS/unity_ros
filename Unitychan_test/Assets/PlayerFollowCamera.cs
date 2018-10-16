@@ -14,7 +14,7 @@ public class PlayerFollowCamera : MonoBehaviour
     void Start()
     {
         // 回転の初期化
-        vRotation = Quaternion.Euler(30, 0, 0);         // 垂直回転(X軸を軸とする回転)は、30度見下ろす回転
+        vRotation = Quaternion.Euler(10, 0, 0);         // 垂直回転(X軸を軸とする回転)は、30度見下ろす回転
         hRotation = Quaternion.identity;                // 水平回転(Y軸を軸とする回転)は、無回転
         transform.rotation = hRotation * vRotation;     // 最終的なカメラの回転は、垂直回転してから水平回転する合成回転
 
@@ -35,6 +35,6 @@ public class PlayerFollowCamera : MonoBehaviour
 
         // カメラの位置(transform.position)の更新
         // player位置から距離distanceだけ手前に引いた位置を設定します(位置補正版)
-        transform.position = player.position + new Vector3(0, 3, 0) - transform.rotation * Vector3.forward * distance;
+        transform.position = player.position + new Vector3(0, 1.8f, 0.5f) - transform.rotation * Vector3.forward * distance;
     }
 }

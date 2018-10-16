@@ -54,6 +54,7 @@ namespace RosSharp.RosBridgeClient
             int row_step = message.row_step;
             int point_step = message.point_step;
 
+            size = width * height;
             pcl = new Vector3[width*height];
 
             for (int column = 0; column < width; column++)
@@ -72,13 +73,13 @@ namespace RosSharp.RosBridgeClient
         {
             mesh = new Mesh();
             Vector3[] points = pcl;
-            int[] indecies = new int[size/3];
-            Color[] colors = new Color[size/3];
-            for (int i = 0; i < size/3; ++i)
+            int[] indecies = new int[size];
+            Color[] colors = new Color[size];
+            for (int i = 0; i < size; ++i)
             {
-                points[i] = new Vector3(byteArray[3*i], byteArray[3 * i + 1], byteArray[3 * i + 2]);
+                //points[i] = new Vector3(byteArray[3*i], byteArray[3 * i + 1], byteArray[3 * i + 2]);
                 indecies[i] = i;
-                colors[i] = new Color(3*i/size, 3 * i / size, 3 * i / size, 1.0f);
+                colors[i] = new Color(i/size, i / size, i / size, 1.0f);
             }
 
             mesh.vertices = points;
