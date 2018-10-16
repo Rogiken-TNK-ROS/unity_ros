@@ -10,6 +10,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float applySpeed = 0.2f;       // 振り向きの適用速度
     [SerializeField] private PlayerFollowCamera refCamera;  // カメラの水平回転を参照する用
 
+    private CharacterController CharacterController;
+    private Animator animator;
+
+    private void Start()
+    {
+        CharacterController = GetComponent<CharacterController>();
+    }
+
     void Update()
     {
         // WASD入力から、XZ平面(水平な地面)を移動する方向(velocity)を得ます
@@ -29,6 +37,7 @@ public class Player : MonoBehaviour
         // いずれかの方向に移動している場合
         if (velocity.magnitude > 0)
         {
+
             // プレイヤーの回転(transform.rotation)の更新
             // 無回転状態のプレイヤーのZ+方向(後頭部)を、
             // カメラの水平回転(refCamera.hRotation)で回した移動の反対方向(-velocity)に回す回転に段々近づけます
