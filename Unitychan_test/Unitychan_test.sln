@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unitychan_test", "Unitychan_test.csproj", "{9E0E2E86-66CE-594A-85D4-8F617BA1D232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unitychan_test.Plugins", "Unitychan_test.Plugins.csproj", "{1AED0102-960E-4D15-B595-607DA78B24E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unitychan_test.Editor.Plugins", "Unitychan_test.Editor.Plugins.csproj", "{34841493-20E2-0D47-61EA-D76B7900C158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,14 @@ Global
 		{9E0E2E86-66CE-594A-85D4-8F617BA1D232}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E0E2E86-66CE-594A-85D4-8F617BA1D232}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E0E2E86-66CE-594A-85D4-8F617BA1D232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AED0102-960E-4D15-B595-607DA78B24E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AED0102-960E-4D15-B595-607DA78B24E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AED0102-960E-4D15-B595-607DA78B24E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AED0102-960E-4D15-B595-607DA78B24E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34841493-20E2-0D47-61EA-D76B7900C158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34841493-20E2-0D47-61EA-D76B7900C158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34841493-20E2-0D47-61EA-D76B7900C158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34841493-20E2-0D47-61EA-D76B7900C158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
