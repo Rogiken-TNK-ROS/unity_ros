@@ -73,19 +73,22 @@ namespace RosSharp.RosBridgeClient
 
 			int[] triangles = new int[size/3];
 
-		 for(int n = 0; n < size/3; n++)
-		{
+            Vector2[] uvs = new Vector2[size/3];
+
+            for (int n = 0; n < size/3; n++)
+		    {
                 // 頂点座標の指定
                 //vertices[n] = new Vector3(messageData[3*n],messageData[3*n+1],messageData[3*n+2]);
                 vertices[n] = new Vector3(floatArray[3 * n], floatArray[3 * n + 1], floatArray[3 * n + 2]);
 
                 // 三角形ごとの頂点インデックスを指定(片面)
                 triangles[n] = n;
-			
-		}
 
-            // UVの指定 (頂点数と同じ数を指定すること).
-            //いったんなし
+                // UVの指定 (頂点数と同じ数を指定すること).
+                //いったんなし
+                //uvs[n] = new Vector2(3*n / (float)size, 3*n / (float)size);
+            }
+
 
             Mesh mesh = new Mesh();
 			mesh.vertices = vertices;
@@ -103,7 +106,11 @@ namespace RosSharp.RosBridgeClient
 			if (!meshCollider) meshCollider = gameObject.AddComponent<MeshCollider>();
 
 			meshFilter.mesh = mesh;
-			meshRenderer.sharedMaterial = material;
+
+            /*色付けテスト*/
+            //meshRenderer.sharedMaterial.mainTexture = CreateTexture(vertices);
+
+            meshRenderer.sharedMaterial = material;
 			meshCollider.sharedMesh = mesh;
 			meshCollider.sharedMaterial = physicMaterial;
 		}
