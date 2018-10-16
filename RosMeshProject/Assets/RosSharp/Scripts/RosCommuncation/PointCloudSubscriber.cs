@@ -29,7 +29,7 @@ namespace RosSharp.RosBridgeClient
             
             if (isMessageReceived)
             {
-                test_point.position = new Vector3(byteArray[0], byteArray[1], byteArray[2]);
+                test_point.position = pcl[0];//new Vector3(byteArray[0], byteArray[1], byteArray[2]);
                 isMessageReceived = false;
             }
         }
@@ -55,6 +55,7 @@ namespace RosSharp.RosBridgeClient
             int point_step = message.point_step;
 
             size = width * height;
+            Debug.Log(size);
             pcl = new Vector3[width*height];
 
             for (int column = 0; column < width; column++)
@@ -62,7 +63,11 @@ namespace RosSharp.RosBridgeClient
                 for(int row = 0; row < height; row++)
                 {
                     int arrayPosition = column * point_step + row * row_step;
-                    pcl[column * width + row] = new Vector3(arrayPosition+message.fields[0].offset, arrayPosition+ message.fields[1].offset, arrayPosition+ message.fields[2].offset);
+                    Debug.Log(arrayPosition);
+                    int x = arrayPosition + message.fields[0].offset;
+                    int y = arrayPosition + message.fields[1].offset;
+                    int z = arrayPosition + message.fields[2].offset;
+                    pcl[column * width + row] = new Vector3(message.data[x], message.data[y], message.data[z]);
                 }
             }
 
