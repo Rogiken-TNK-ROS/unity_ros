@@ -1,0 +1,10 @@
+起動手順
+1.Unity起動
+2.RosMeshProject（/home/nishida-lab/Documents/key/Mesh_Unity/RosMeshProject)をopen
+3.plojectビューにあるAssetsフォルダの直下にMesh_testシーンがあるのでopen
+4.hieraruchyビューにあるMeshCreaterをクリックしてinspectorビューの一番左上にチェックが入ってることを確認
+5.inspectoビューの中段にRosConnectorがあるのでRosBridgeServerUrlの部分にROS側のPCのIPを入力
+6.ROS側からMeshをfloat32arrayでpublishする場合は[FloatArraySubsciber]にチェック
+  ROS側からPointCloud2をpublishする場合は[PointClouSubsciber]にチェック
+7.それぞれのTopicの部分にPublisherのtopic名を入力
+8.GO!!
