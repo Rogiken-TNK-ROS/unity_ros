@@ -15,8 +15,8 @@ namespace RosSharp.RosBridgeClient
         private Mesh mesh;
 
         public Transform test_point;
-        //public PhysicMaterial physicMaterial;
 
+        private Vector3[] pcl;
 
         protected override void Start()
         {
@@ -29,33 +29,49 @@ namespace RosSharp.RosBridgeClient
             
             if (isMessageReceived)
             {
-                //test_point.position = new Vector3(byteArray[0], byteArray[1], byteArray[2]);
+                test_point.position = new Vector3(byteArray[0], byteArray[1], byteArray[2]);
                 isMessageReceived = false;
-                CreateMesh();
             }
         }
 
         protected override void ReceiveMessage(PointCloud2 message)
         {
             //throw new NotImplementedException();
-            size = message.data.GetLength(0);
-            int i=0;
+            //size = message.data.GetLength(0);
+            //int i=0;
+           
             
-            byteArray = new byte[size];
-
+            /*
             foreach (byte temp in message.data)
             {
                 byteArray[i] = temp;
                 i++;
             }
             Debug.Log(size);
-            isMessageReceived = true;
+            isMessageReceived = true;*/
+            int width = message.width;
+            int height = message.height;
+            int row_step = message.row_step;
+            int point_step = message.point_step;
+
+            pcl = new Vector3[width*height];
+
+            for (int column = 0; column < width; column++)
+            {
+                for(int row = 0; row < height; row++)
+                {
+                    int arrayPosition = column * point_step + row * row_step;
+                    pcl[column * width + row] = new Vector3(arrayPosition+message.fields[0].offset, arrayPosition+ message.fields[1].offset, arrayPosition+ message.fields[2].offset);
+                }
+            }
+
+
         }
 
         void CreateMesh()
         {
             mesh = new Mesh();
-            Vector3[] points = new Vector3[size/3];
+            Vector3[] points = pcl;
             int[] indecies = new int[size/3];
             Color[] colors = new Color[size/3];
             for (int i = 0; i < size/3; ++i)
@@ -65,14 +81,10 @@ namespace RosSharp.RosBridgeClient
                 colors[i] = new Color(3*i/size, 3 * i / size, 3 * i / size, 1.0f);
             }
 
-            MeshCollider meshCollider = gameObject.GetComponent<MeshCollider>();
-			if (!meshCollider) meshCollider = gameObject.AddComponent<MeshCollider>();
-
             mesh.vertices = points;
             mesh.colors = colors;
             mesh.SetIndices(indecies, MeshTopology.Points, 0);
-            //meshCollider.sharedMaterial = physicMaterial;
-		
+
         }
     }
 }
