@@ -38,7 +38,7 @@ namespace RosSharp.RosBridgeClient
             
             if (isMessageReceived)
             {
-                Debug.Log("U_isMessageReceived");
+                //Debug.Log("U_isMessageReceived");
                 CreateMesh();
                 test_point.position = new Vector3(pcl[0].x, pcl[0].y, pcl[0].z);
                 isMessageReceived = false;
@@ -52,13 +52,14 @@ namespace RosSharp.RosBridgeClient
             //throw new NotImplementedException();
             size = message.data.GetLength(0);
             int i=0;
-            Debug.Log("1"+size);
+            //Debug.Log("first"+ size);
+            byteArray = new byte[size];
             foreach (byte temp in message.data)
             {
                 byteArray[i] = temp;
                 i++;
             }
-            Debug.Log("2"+size);
+            //Debug.Log("second"+size);
             
             //byte width = (byte)message.width;
             //byte height = (byte)message.height;
@@ -76,7 +77,7 @@ namespace RosSharp.RosBridgeClient
             Debug.Log("point_step" + message.point_step);
 
             size = size/point_step;
-            Debug.Log("3"+size);
+            //Debug.Log("3"+size);
             //BitConverter.ToSingle(test, 0);
 
             /*
@@ -150,14 +151,14 @@ namespace RosSharp.RosBridgeClient
 
             //CreateMesh();
             isMessageReceived = true;
-            Debug.Log("isMessageReceived"+ isMessageReceived);
+            //Debug.Log("isMessageReceived"+ isMessageReceived);
         }
 
         void CreateMesh()
         {
             //Debug.Log("message");
 
-            Debug.Log("CreateMesh" + pcl.GetLength(0));
+            //Debug.Log("CreateMesh" + pcl.GetLength(0));
             mesh = new Mesh();
             //Vector3[] points = pcl;
             int[] indecies = new int[size];
@@ -178,7 +179,7 @@ namespace RosSharp.RosBridgeClient
 
             /**/
 
-            //pcl = new Vector3[size];
+            pcl = new Vector3[size];
             float min_x = 0.0f;
             float min_y = 0.0f;
             float min_z = 0.0f;
