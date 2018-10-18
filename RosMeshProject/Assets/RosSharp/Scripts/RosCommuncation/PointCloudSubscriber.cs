@@ -27,6 +27,8 @@ namespace RosSharp.RosBridgeClient
         int row_step;
         int point_step;
 
+        int num = 0;
+
         protected override void Start()
         {
             base.Start();
@@ -39,7 +41,12 @@ namespace RosSharp.RosBridgeClient
             if (isMessageReceived)
             {
                 //Debug.Log("U_isMessageReceived");
-                CreateMesh();
+                if(num == 0)
+                {
+                    CreateMesh();
+                    num++;
+                }
+                
                 test_point.position = new Vector3(pcl[0].x, pcl[0].y, pcl[0].z);
                 isMessageReceived = false;
             }
@@ -150,7 +157,8 @@ namespace RosSharp.RosBridgeClient
             //}
 
             //CreateMesh();
-            isMessageReceived = true;
+            if(num==0)
+                isMessageReceived = true;
             //Debug.Log("isMessageReceived"+ isMessageReceived);
         }
 
@@ -210,14 +218,15 @@ namespace RosSharp.RosBridgeClient
 
                 pcl[n] = new Vector3(x, y, z);
                 indecies[n] = n;
-                colors[n] = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                colors[n] = new Color(1.0f/size, 1.0f/size, 1.0f/size, 1.0f);
+                Instantiate(floorObject, pcl[n], Quaternion.identity);// as GameObject;
             }
 
             Debug.Log("pcl_Finished" + pcl[0]);
             //床生成
-            floor_posi = new Vector3(max_x - min_x, min_y - 10.0f, max_z - min_z);
-            GameObject obj = Instantiate(floorObject, new Vector3(0.0f, min_y - 10.0f, 0.0f), Quaternion.identity) as GameObject;
-            obj.transform.localScale = new Vector3(max_x-min_x, 10.0f, max_z-min_z);
+            //floor_posi = new Vector3(max_x - min_x, min_y - 10.0f, max_z - min_z);
+            //GameObject obj = Instantiate(floorObject, new Vector3(0.0f, min_y - 10.0f, 0.0f), Quaternion.identity) as GameObject;
+            //obj.transform.localScale = new Vector3(max_x-min_x, 10.0f, max_z-min_z);
 
 
             /**/
