@@ -42,15 +42,15 @@ namespace RosSharp.RosBridgeClient
             if (isMessageReceived)
             {
                 //Debug.Log("U_isMessageReceived");
-                if(num == 0)
-                {
+                //if(num == 0)
+                //{
                     CreateMesh();
                     
                     MeshFilter meshFilter = GetComponent<MeshFilter>();
                     meshFilter.mesh.SetIndices(meshFilter.mesh.GetIndices(0), MeshTopology.Points, 0);
                     
                     num++;
-                }
+                //}
                 
                 test_point.position = new Vector3(pcl[0].x, pcl[0].y, pcl[0].z);
                 isMessageReceived = false;
@@ -222,7 +222,7 @@ namespace RosSharp.RosBridgeClient
                 max_y = ComFloat(y, max_y, "max");
                 max_z = ComFloat(z, max_z, "max");
 
-                pcl[n] = new Vector3(x, z, y);
+                pcl[n] = new Vector3(1.5f*x, 1.5f*z, 1.5f*y);
                 indecies[n] = n;
                 colors[n] = new Color(1.0f/size, 1.0f/size, 1.0f/size, 1.0f);
                 //Instantiate(floorObject, pcl[n], Quaternion.identity);// as GameObject;
@@ -230,9 +230,13 @@ namespace RosSharp.RosBridgeClient
 
             Debug.Log("pcl_Finished" + pcl[0]);
             //床生成
-            floor_posi = new Vector3(max_x - min_x, min_z - 10.0f, max_y - min_y);
-            GameObject obj = Instantiate(floorObject, new Vector3(0.0f, min_z - 5.0f, 0.0f), Quaternion.identity) as GameObject;
-            obj.transform.localScale = new Vector3(max_x-min_x, 10.0f, max_y-min_y);
+            if (!GameObject.Find("Floor(Clone)"))
+            {
+                floor_posi = new Vector3(max_x - min_x, min_z - 10.0f, max_y - min_y);
+                GameObject obj = Instantiate(floorObject, new Vector3((max_y - min_y) / 2.0f, min_z - 5.0f,0.0f), Quaternion.identity) as GameObject;
+                obj.transform.localScale = new Vector3(1.2f*(max_x - min_x), 10.0f, 1.2f*(max_y - min_y));
+            }
+           
 
             mesh.vertices = pcl;
             mesh.triangles = indecies;
