@@ -15,8 +15,7 @@ $ roslaunch rosbridge_server rosbridge_websocket.launch
 Unity側起動手順
 1.Unity起動
 
-2.RosMeshProject（/home/nishida-lab/Documents/key/Mesh_Unity/RosMeshProject)をopen
-  (WRS_TNK/unity_ros/RosMeshProjectをcloneしても同じことが出来るようにします！)
+2.RosMeshProject（WRS_TNK/unity_ros/RosMeshProject)をclone
   (*こまったら新しいUnityProjectを適当に作って，WRS_TNK/unity_ros/SubscribeMeshOrPCL.unitypackageをImportしてください)
   
 3.plojectビューにあるAssetsフォルダの直下にMesh_testシーンがあるのでopen
