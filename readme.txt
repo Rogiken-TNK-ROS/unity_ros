@@ -14,15 +14,22 @@ $ roslaunch rosbridge_server rosbridge_websocket.launch
 
 Unity側起動手順
 1.Unity起動
+
 2.RosMeshProject（/home/nishida-lab/Documents/key/Mesh_Unity/RosMeshProject)をopen
-  (WRS_TNK/unity_rosをcloneしても同じことが出来るようにします！)
+  (WRS_TNK/unity_ros/RosMeshProjectをcloneしても同じことが出来るようにします！)
   (*こまったら新しいUnityProjectを適当に作って，WRS_TNK/unity_ros/SubscribeMeshOrPCL.unitypackageをImportしてください)
+  
 3.plojectビューにあるAssetsフォルダの直下にMesh_testシーンがあるのでopen
+
 4.hieraruchyビューにあるMeshCreaterをクリックしてinspectorビューの一番左上にチェックが入ってることを確認
-5.inspectoビューの中段にRosConnectorがあるのでRosBridgeServerUrlの部分にROS側のPCのIPを入力
+
+5.inspectorビューの中段にRosConnectorがあるのでRosBridgeServerUrlの部分にROS側のPCのIPを入力
+
 6.ROS側からMeshをfloat32arrayでpublishする場合は[FloatArraySubsciber]にチェック
   ROS側からPointCloud2をpublishする場合は[PointClouSubsciber]にチェック
+  
 7.それぞれのTopicの部分にPublisherのtopic名を入力
+
 8.画面上部のPlayボタンをクリック．
 
 *新しいProjectを作った場合，一つ設定をいじる必要があります
