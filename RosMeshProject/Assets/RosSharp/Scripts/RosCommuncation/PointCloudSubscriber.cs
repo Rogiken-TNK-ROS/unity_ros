@@ -15,6 +15,7 @@ namespace RosSharp.RosBridgeClient
         private int size;
         private Mesh mesh;
 
+        public Material material;
         public Transform test_point;
 
         public GameObject floorObject;
@@ -44,10 +45,10 @@ namespace RosSharp.RosBridgeClient
                 if(num == 0)
                 {
                     CreateMesh();
-                    /*
+                    
                     MeshFilter meshFilter = GetComponent<MeshFilter>();
                     meshFilter.mesh.SetIndices(meshFilter.mesh.GetIndices(0), MeshTopology.Points, 0);
-                    */
+                    
                     num++;
                 }
                 
@@ -169,7 +170,8 @@ namespace RosSharp.RosBridgeClient
         void CreateMesh()
         {
             //Debug.Log("message");
-
+            int amari = size % 3;
+            size = size - amari;
             //Debug.Log("CreateMesh" + pcl.GetLength(0));
             mesh = new Mesh();
             //Vector3[] points = pcl;
@@ -220,7 +222,7 @@ namespace RosSharp.RosBridgeClient
                 max_y = ComFloat(y, max_y, "max");
                 max_z = ComFloat(z, max_z, "max");
 
-                pcl[n] = new Vector3(x, y, z);
+                pcl[n] = new Vector3(x, z, y);
                 indecies[n] = n;
                 colors[n] = new Color(1.0f/size, 1.0f/size, 1.0f/size, 1.0f);
                 //Instantiate(floorObject, pcl[n], Quaternion.identity);// as GameObject;
@@ -228,16 +230,38 @@ namespace RosSharp.RosBridgeClient
 
             Debug.Log("pcl_Finished" + pcl[0]);
             //床生成
-            floor_posi = new Vector3(max_x - min_x, min_y - 10.0f, max_z - min_z);
-            GameObject obj = Instantiate(floorObject, new Vector3(0.0f, min_y - 10.0f, 0.0f), Quaternion.identity) as GameObject;
-            obj.transform.localScale = new Vector3(max_x-min_x, 10.0f, max_z-min_z);
+            floor_posi = new Vector3(max_x - min_x, min_z - 10.0f, max_y - min_y);
+            GameObject obj = Instantiate(floorObject, new Vector3(0.0f, min_z - 5.0f, 0.0f), Quaternion.identity) as GameObject;
+            obj.transform.localScale = new Vector3(max_x-min_x, 10.0f, max_y-min_y);
 
+            mesh.vertices = pcl;
+            mesh.triangles = indecies;
 
-            /**/
+            mesh.RecalculateNormals();
+
+            MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
+            if (!meshFilter) meshFilter = gameObject.AddComponent<MeshFilter>();
+
+            MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+            if (!meshRenderer) meshRenderer = gameObject.AddComponent<MeshRenderer>();
+
+            MeshCollider meshCollider = gameObject.GetComponent<MeshCollider>();
+            if (!meshCollider) meshCollider = gameObject.AddComponent<MeshCollider>();
+
+            meshFilter.mesh = mesh;
+
+            /*色付けテスト*/
+            //meshRenderer.sharedMaterial.mainTexture = CreateTexture(vertices);
+
+            meshRenderer.sharedMaterial = material;
+            meshCollider.sharedMesh = mesh;
+           // meshCollider.sharedMaterial = physicMaterial;
+
+            /*
             mesh.vertices = pcl;
             mesh.colors = colors;
             mesh.SetIndices(indecies, MeshTopology.Points, 0);
-
+            */
         }
 
         float ComFloat(float x, float last_x, string type)
