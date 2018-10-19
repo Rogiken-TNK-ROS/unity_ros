@@ -34,6 +34,8 @@ namespace RosSharp.RosBridgeClient
 			if (isMessageReceived) {
                 //Destroy(mesh);
                 CreateMesh();
+                MeshFilter meshFilter = GetComponent<MeshFilter>();
+                meshFilter.mesh.SetIndices(meshFilter.mesh.GetIndices(0), MeshTopology.Points, 0);
                 isMessageReceived = false;
 			
 			}
@@ -115,20 +117,20 @@ namespace RosSharp.RosBridgeClient
 			meshCollider.sharedMaterial = physicMaterial;
 		}
 
-        Texture2D CreateTexture(Vector3[] vertices)
-        {
-            Color[] colorMap = new Color[vertices.Length];
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                float percent = Mathf.InverseLerp(minHeight, maxHeight, vertices[i].y);
-                colorMap[i] = meshColorGradient.Evaluate(percent);
-            }
-            Texture2D texture = new Texture2D(size, size);
+        //Texture2D CreateTexture(Vector3[] vertices)
+        //{
+        //    Color[] colorMap = new Color[vertices.Length];
+        //    for (int i = 0; i < vertices.Length; i++)
+        //    {
+        //        float percent = Mathf.InverseLerp(minHeight, maxHeight, vertices[i].y);
+        //        colorMap[i] = meshColorGradient.Evaluate(percent);
+        //    }
+        //    Texture2D texture = new Texture2D(size, size);
 
-            texture.SetPixels(colorMap);
-            texture.Apply();
+        //    texture.SetPixels(colorMap);
+        //    texture.Apply();
 
-            return texture;
-        }
+        //    return texture;
+        //}
     }
 }

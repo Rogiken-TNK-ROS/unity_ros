@@ -320,11 +320,13 @@
     <Compile Include="Assets\script\KeyMove.cs" />
     <Compile Include="Assets\script\PerlinNoiseMesh.cs" />
     <Compile Include="Assets\script\PointCloud.cs" />
+    <Compile Include="Assets\script\PointController.cs" />
     <Compile Include="Assets\script\SceneViewCamera.cs" />
     <Compile Include="Assets\script\Shoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\VertexColor.shader" />
+    <None Include="Assets\material\Gradation.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

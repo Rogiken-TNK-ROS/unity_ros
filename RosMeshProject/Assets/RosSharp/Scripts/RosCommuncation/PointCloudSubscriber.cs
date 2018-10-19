@@ -44,6 +44,10 @@ namespace RosSharp.RosBridgeClient
                 if(num == 0)
                 {
                     CreateMesh();
+                    /*
+                    MeshFilter meshFilter = GetComponent<MeshFilter>();
+                    meshFilter.mesh.SetIndices(meshFilter.mesh.GetIndices(0), MeshTopology.Points, 0);
+                    */
                     num++;
                 }
                 
@@ -157,7 +161,7 @@ namespace RosSharp.RosBridgeClient
             //}
 
             //CreateMesh();
-            if(num==0)
+            //if(num==0)
                 isMessageReceived = true;
             //Debug.Log("isMessageReceived"+ isMessageReceived);
         }
@@ -219,14 +223,14 @@ namespace RosSharp.RosBridgeClient
                 pcl[n] = new Vector3(x, y, z);
                 indecies[n] = n;
                 colors[n] = new Color(1.0f/size, 1.0f/size, 1.0f/size, 1.0f);
-                Instantiate(floorObject, pcl[n], Quaternion.identity);// as GameObject;
+                //Instantiate(floorObject, pcl[n], Quaternion.identity);// as GameObject;
             }
 
             Debug.Log("pcl_Finished" + pcl[0]);
             //床生成
-            //floor_posi = new Vector3(max_x - min_x, min_y - 10.0f, max_z - min_z);
-            //GameObject obj = Instantiate(floorObject, new Vector3(0.0f, min_y - 10.0f, 0.0f), Quaternion.identity) as GameObject;
-            //obj.transform.localScale = new Vector3(max_x-min_x, 10.0f, max_z-min_z);
+            floor_posi = new Vector3(max_x - min_x, min_y - 10.0f, max_z - min_z);
+            GameObject obj = Instantiate(floorObject, new Vector3(0.0f, min_y - 10.0f, 0.0f), Quaternion.identity) as GameObject;
+            obj.transform.localScale = new Vector3(max_x-min_x, 10.0f, max_z-min_z);
 
 
             /**/
