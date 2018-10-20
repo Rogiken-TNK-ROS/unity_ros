@@ -19,6 +19,7 @@ namespace RosSharp.RosBridgeClient
         public Transform test_point;
 
         public GameObject floorObject;
+        public GameObject player;
         static public Vector3 floor_posi;
 
         private Vector3[] pcl;
@@ -52,7 +53,7 @@ namespace RosSharp.RosBridgeClient
                     num++;
                 //}
                 
-                test_point.position = new Vector3(pcl[0].x, pcl[0].y, pcl[0].z);
+                //test_point.position = new Vector3(pcl[0].x, pcl[0].y, pcl[0].z);
                 isMessageReceived = false;
             }
 
@@ -232,9 +233,10 @@ namespace RosSharp.RosBridgeClient
             //床生成
             if (!GameObject.Find("Floor(Clone)"))
             {
-                floor_posi = new Vector3(max_x - min_x, min_z - 10.0f, max_y - min_y);
-                GameObject obj = Instantiate(floorObject, new Vector3((max_y - min_y) / 2.0f, min_z - 5.0f,0.0f), Quaternion.identity) as GameObject;
-                obj.transform.localScale = new Vector3(1.2f*(max_x - min_x), 10.0f, 1.2f*(max_y - min_y));
+                //floor_posi = new Vector3(max_x - min_x, min_z - 2.0f, max_y - min_y);
+                Instantiate(player, new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity);
+                GameObject obj = Instantiate(floorObject, new Vector3((max_x - min_x) / 2.0f, min_z - 2.5f, ((max_y - min_y)/2.0f)+min_y), Quaternion.identity) as GameObject;
+                obj.transform.localScale = new Vector3(1.2f*(max_x - min_x), 5.0f, 1.2f*(max_y - min_y));
             }
            
 
