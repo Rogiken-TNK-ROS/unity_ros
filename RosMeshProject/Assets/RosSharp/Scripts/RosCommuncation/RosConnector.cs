@@ -23,6 +23,7 @@ namespace RosSharp.RosBridgeClient
 {
     public class RosConnector : MonoBehaviour
     {
+        public static bool rosConect;
         public int timeout = 10;
 
         public RosSocket RosSocket { get; private set; }
@@ -66,11 +67,13 @@ namespace RosSharp.RosBridgeClient
         {
             IsConnected.Set();
             Debug.Log("Connected to RosBridge: " + RosBridgeServerUrl);
+            rosConect = true;
         }
 
         private void OnClosed(object sender, EventArgs e)
         {
             Debug.Log("Disconnected from RosBridge: " + RosBridgeServerUrl);
+            rosConect = false;
         }
 
     }
